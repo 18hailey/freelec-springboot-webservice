@@ -11,3 +11,4 @@
      - .andExpect(status().isOK()): 헤더의 status 검증
      - .andExpect(content().string(..)): 응답 본문의 내용 검증
   - @RequiredArgsConstructor: 필드 중 final 키워드가 붙은 필드들을 포함한 생성자 생성
+#### chapter3. Spring Data JPA 예제 코드, 테스트 코드 작성
