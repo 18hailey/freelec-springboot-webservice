@@ -30,7 +30,7 @@
              .build();
 - JUnit5 사용을 위해 @After -> @AfterEach: 단위 테스트가 끝날 때마다 수행되는 메서드 지정
 - save(): 테이블에 insert/update 쿼리를 실행한다
-- @RequestBody: 
+- @RequestBody: 요청 메시지의 바디 부분에 담긴 json 데이터를 자바 객체로 매핑할 때 사용 (cf. @ResponseBody)
    
   
   
