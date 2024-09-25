@@ -2,6 +2,7 @@
  * [1장: 환경설정](#chapter-1)
  * [2장: 테스트 코드](#chapter-2)
  * [3장: Spring Data JPA 예제](#chapter-3)
+ * [4장: 머스테치로 화면 구성하기](#chapter-4)
 
  ### chaper1. intellij 세팅, 깃 연결 <a id="chapter-1"></a>
  - JetBrains의 ToolBox 이용
@@ -49,4 +50,20 @@
   - EntityListeners(AuditingEntityListener.class): 해당 클래스에 Auditing 기능 포함시킴 
   - @CreatedDate, @LastModifiedDate: Entity가 생성된 시간, 조회한 Entity의 값이 변경된 시간 저장 
   - @EnableJpaAuditing: JPA Auditing 활성화
-  
+ ### chapter4. 머스테치로 화면 구성, 화면과 서버를 어떻게 연결하는가 <a id="chapter-4"></a>
+  - 템플릿 엔진: 지정된 템플릿 양식과 데이터가 합쳐져 HTML 문서를 출력하는 소프트웨어
+    - 서버 템플릿 엔진: 서버에서 Java 코드로 문자열을 만든 뒤 이 문자열을 **HTML로 변환**하여 브라우저로 전달 ex. JSP, Freemarker
+    - 클라이언트 템플릿 엔진: **브라우저에서 화면을 생성**, 서버에서는 Json, Xml 형식의 데이터만 전달하고 클라이언트에서 조립 ex. 리액트, 뷰 등의 SPA(Single Page Application)
+    - Mustache 템플릿 엔진 - 심플한 문법, 로직 코드를 사용할 수 없어 view의 역할과 서버의 역할 명확히 분리, 클라이언트/서버 템플릿 모두 가능
+  - TestRestTemplate: @SpringBootTest와 TestRestTemplate로 웹 통합테스트 가능, 즉 API를 가지고 테스트 가능 
+    - this.restTemplate.getForObject("/", String.class): GET을 통해 representation(<- entity)을 반환
+    - (representation = representation MetaData + representation Data)
+    - mockMvc와의 차이점은, mockMvc는 ServletContainer를 사용하지 않고 TestRestTemplate은 ServletContainer를 사용한다
+    - mockMvc는 **서버의** 입장에서 구현한 API를 통해 비즈니스 로직이 문제없이 수행되는지 테스트 
+    - TestRestTemplate은 **클라이언트의** 입장에서 RestTemplate을 사용하듯이 테스트
+    - [https://meetup.nhncloud.com/posts/124]
+  - 페이지 로딩속도를 높이기 위해 css는 header에, js는 footer에 둠
+  - bootstrap와 jquery는 모두 클라이언트 사이드 자바스크립트 라이브러리인데 과거 bootstrap이 jquery를 의존했지만 지금은 아님
+    - bootstrap: 웹사이트를 쉽게 만들 수 있도록 도와주는 css, js 프레임워크
+    - jquery: 자바스크립트를 더 쉽게 활용할 수 있도록 도와주는 라이브러리, 크로스 브라우징(브라우저 간 호환 기능) 지원
+    
