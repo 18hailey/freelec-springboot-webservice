@@ -66,4 +66,7 @@
   - bootstrap와 jquery는 모두 클라이언트 사이드 자바스크립트 라이브러리인데 과거 bootstrap이 jquery를 의존했지만 지금은 아님
     - bootstrap: 웹사이트를 쉽게 만들 수 있도록 도와주는 css, js 프레임워크
     - jquery: 자바스크립트를 더 쉽게 활용할 수 있도록 도와주는 라이브러리, 크로스 브라우징(브라우저 간 호환 기능) 지원
-    
+  - view(.mustache) 만들어 controller에서 url 매핑하여 출력, form 데이터 처리 시 js(src/main/resources/staic/js/...) function 실행
+  - 데이터베이스에 데이터를 저장하는 건 mvc 패턴에서 form에서 전달되는 데이터를 @RequestBody로 받아 dto로 처리
+  - 반대로 form에 사용자 정보를 표시해야 할 때는 데이터베이스에서 가져온 후 dto로 받아 Model로 뿌려줌, form에서는 객체 하나의 여러 필드들을 접근함
+  - Controller를 크게 view를 출력하는 부분과, 내부적으로 보이지 않게 데이터를 처리하는 부분 두 가지로 나눌 수 있다
