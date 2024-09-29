@@ -13,6 +13,7 @@ public class PostsApiController {
 
     private final PostsService postsService;
 
+    // 아래 uri 매핑은 버튼 눌러 실행됨
     // 게시글 저장
     @PostMapping("/api/v1/posts")
     public Long save(@RequestBody PostsSaveRequestDto requestDto) {
