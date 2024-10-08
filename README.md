@@ -74,7 +74,7 @@
 ### chapter5. 스프링 시큐리티와 OAuth2.0으로 로그인 기능 구현하기 <a id= "chapter-5"></a> 
   - OAuth: 애플리케이션 하나가 사용자의 자격 증명을 보내는 대신 다른 애플리케이션에 권한 부여 토큰을 보내 사용자에게 액세스 권한 부여
     [https://www.cloudflare.com/ko-kr/learning/access-management/what-is-oauth/]
-    [https://hail2y.tistory.com/112] -- 유튜브 생활코딩 님 OAuth 2.0 강의 정리
+    [https://hail2y.tistory.com/112]
   - OAuth는 인가 과정에서 인증을 따로 분리하기 위한 기술, 인증은 유저가 직접 권한은 서비스에게 부여하는 방식
     [https://www.youtube.com/watch?v=Mh3LaHmA21I]
   - 많은 서비스들의 로그인 과정에서 소셜 로그인 기능을 사용하는 이유는, 구현 시 필요한 사항들을 다른 애플리케이션(구글, 네이버, 카카오...)에 맡김으로써 서비스 개발에 집중 가능
