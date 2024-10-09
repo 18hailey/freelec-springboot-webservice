@@ -48,7 +48,7 @@
   ⇒ **더티 체킹(dirty checking)**
 - JPA Auditing - 생성시간, 수정시간 포함(LocalDate 사용)
   - @MappedSuperClass: 모든 Entity의 상위 클래스가 되어(= Entity 클래스에서 상속하여) 필드들도 칼럼으로 인식시킴
-  - EntityListeners(AuditingEntityListener.class): 해당 클래스에 Auditing 기능 포함시킴 
+  - @cEntityListeners(AuditingEntityListener.class): 해당 클래스에 Auditing 기능 포함시킴 
   - @CreatedDate, @LastModifiedDate: Entity가 생성된 시간, 조회한 Entity의 값이 변경된 시간 저장 
   - @EnableJpaAuditing: JPA Auditing 활성화
  ### chapter4. 머스테치로 화면 구성, 화면과 서버를 어떻게 연결하는가 <a id="chapter-4"></a>
