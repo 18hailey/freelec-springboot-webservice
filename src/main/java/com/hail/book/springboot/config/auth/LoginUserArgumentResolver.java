@@ -30,7 +30,7 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
         return isLoginUserAnnotation && isUserClass;
     }
 
-    // 파라미터에 전달할 객체 생성
+    // 세션에서 객체 가져오기(파라미터에 전달할 객체 생성)
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
                                   NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {

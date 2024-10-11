@@ -22,9 +22,9 @@ import java.util.Collections;
 
 @RequiredArgsConstructor
 @Service
-public class CustomOAuth2UserService extends DefaultOAuth2UserService {
+public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
     /**
-     * 구글 로그인 이후 가져온 사용자의 정보(email, name, picture..)들을 기반으로
+     * 구글 로그인 "이후" 가져온 사용자의 정보(email, name, picture..)들을 기반으로
      * 가입 및 정보 수정, 세션 저장 등의 기능 지원
      */
 
@@ -34,15 +34,17 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     @Transactional
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        OAuth2User oAuth2User = super.loadUser(userRequest);
+        DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
+        OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
         String registrationId = userRequest.getClientRegistration().getRegistrationId(); // 현재 로그인 진행 중인 서비스 구분하는 코드(구글 혹은 네이버)
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails()
                 .getUserInfoEndpoint().getUserNameAttributeName(); // 로그인 진행 시 키가 되는 필드값 (PK)
-
+        System.out.println("userNameAttributeName = " + userNameAttributeName);
         OAuthAttributes attributes = OAuthAttributes // OAuth2UserService를 통해 가져온 OAuth2User의 attribute를 담을 클래스
                 .of(registrationId, userNameAttributeName,
                         oAuth2User.getAttributes());
+        System.out.println("oAuth2User.getAttributes() = " + oAuth2User.getAttributes());
         User user = saveOrUpdate(attributes);
         httpSession.setAttribute("user", new SessionUser(user)); // 세션에 사용자 정보를 저장하기 위한 DTO
         return new DefaultOAuth2User(
@@ -52,8 +54,8 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private User saveOrUpdate(OAuthAttributes attributes) {
         User user = userRepository.findByEmail(attributes.getEmail())
-                .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
-                .orElse(attributes.toEntity());
+                .map(entity -> entity.update(attributes.getName(), attributes.getPicture())) // Optional에 값이 존재할 때 실행되는 메서드
+                .orElse(attributes.toEntity()); // Optional에 값이 없을 때 실행되는 메서드
         return userRepository.save(user);
     }
 }
