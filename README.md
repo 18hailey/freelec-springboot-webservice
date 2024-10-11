@@ -3,6 +3,7 @@
  * [2장: 테스트 코드](#chapter-2)
  * [3장: Spring Data JPA 예제](#chapter-3)
  * [4장: 머스테치로 화면 구성하기](#chapter-4)
+ * [5장: 스프링 시큐리티와 OAuth2.0으로 로그인 기능 구현하기](#chapter-5)
 
  ### chaper1. intellij 세팅, 깃 연결 <a id="chapter-1"></a>
  - JetBrains의 ToolBox 이용
@@ -47,7 +48,7 @@
   ⇒ **더티 체킹(dirty checking)**
 - JPA Auditing - 생성시간, 수정시간 포함(LocalDate 사용)
   - @MappedSuperClass: 모든 Entity의 상위 클래스가 되어(= Entity 클래스에서 상속하여) 필드들도 칼럼으로 인식시킴
-  - EntityListeners(AuditingEntityListener.class): 해당 클래스에 Auditing 기능 포함시킴 
+  - @cEntityListeners(AuditingEntityListener.class): 해당 클래스에 Auditing 기능 포함시킴 
   - @CreatedDate, @LastModifiedDate: Entity가 생성된 시간, 조회한 Entity의 값이 변경된 시간 저장 
   - @EnableJpaAuditing: JPA Auditing 활성화
  ### chapter4. 머스테치로 화면 구성, 화면과 서버를 어떻게 연결하는가 <a id="chapter-4"></a>
@@ -61,7 +62,7 @@
     - mockMvc와의 차이점은, mockMvc는 ServletContainer를 사용하지 않고 TestRestTemplate은 ServletContainer를 사용한다
     - mockMvc는 **서버의** 입장에서 구현한 API를 통해 비즈니스 로직이 문제없이 수행되는지 테스트 
     - TestRestTemplate은 **클라이언트의** 입장에서 RestTemplate을 사용하듯이 테스트
-    - [https://meetup.nhncloud.com/posts/124]
+      [https://meetup.nhncloud.com/posts/124]
   - 페이지 로딩속도를 높이기 위해 css는 header에, js는 footer에 둠
   - bootstrap와 jquery는 모두 클라이언트 사이드 자바스크립트 라이브러리인데 과거 bootstrap이 jquery를 의존했지만 지금은 아님
     - bootstrap: 웹사이트를 쉽게 만들 수 있도록 도와주는 css, js 프레임워크
@@ -70,3 +71,11 @@
   - 데이터베이스에 데이터를 저장하는 건 mvc 패턴에서 form에서 전달되는 데이터를 @RequestBody로 받아 dto로 처리
   - 반대로 form에 사용자 정보를 표시해야 할 때는 데이터베이스에서 가져온 후 dto로 받아 Model로 뿌려줌, form에서는 객체 하나의 여러 필드들을 접근함
   - Controller를 크게 view를 출력하는 부분과, 내부적으로 보이지 않게 데이터를 처리하는 부분 두 가지로 나눌 수 있다
+### chapter5. 스프링 시큐리티와 OAuth2.0으로 로그인 기능 구현하기 <a id= "chapter-5"></a> 
+  - OAuth: 애플리케이션 하나가 사용자의 자격 증명을 보내는 대신 다른 애플리케이션에 권한 부여 토큰을 보내 사용자에게 액세스 권한 부여
+    [https://www.cloudflare.com/ko-kr/learning/access-management/what-is-oauth/]
+    [https://hail2y.tistory.com/112]
+  - OAuth는 인가 과정에서 인증을 따로 분리하기 위한 기술, 인증은 유저가 직접 권한은 서비스에게 부여하는 방식
+    [https://www.youtube.com/watch?v=Mh3LaHmA21I]
+  - 많은 서비스들의 로그인 과정에서 소셜 로그인 기능을 사용하는 이유는, 구현 시 필요한 사항들을 다른 애플리케이션(구글, 네이버, 카카오...)에 맡김으로써 서비스 개발에 집중 가능
+  - 스프링부트 1.5에서는 url 주소까지 모두 명시해야 했는데 스프링부터 2.0에서는 enum 타입의 **CommonOuth2Provider**에서 제공(구글, 깃허브, 페이스북, 옥타만) 
