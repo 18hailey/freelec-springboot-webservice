@@ -5,6 +5,7 @@
  * [4장: 머스테치로 화면 구성하기](#chapter-4)
  * [5장: 스프링 시큐리티와 OAuth2.0으로 로그인 기능 구현하기](#chapter-5)
  * [6장: AWS 서버 환경 구축](#chapter-6)
+ * [7장: AWS RDS 환경 구축](#chapter-7)
 
  ### chaper1. intellij 세팅, 깃 연결 <a id="chapter-1"></a>
  - JetBrains의 ToolBox 이용
@@ -81,3 +82,4 @@
   - 많은 서비스들의 로그인 과정에서 소셜 로그인 기능을 사용하는 이유는, 구현 시 필요한 사항들을 다른 애플리케이션(구글, 네이버, 카카오...)에 맡김으로써 서비스 개발에 집중 가능
   - 스프링부트 1.5에서는 url 주소까지 모두 명시해야 했는데 스프링부터 2.0에서는 enum 타입의 **CommonOuth2Provider**에서 제공(구글, 깃허브, 페이스북, 옥타만)
 ### chapter6. AWS 서버 환경 구축 <a id= "chapter-6"></a> 
+### chapter7. AWS RDS 환경 구축 <a id= "chapter-7"></a> 
